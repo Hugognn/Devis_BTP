@@ -9,6 +9,7 @@ package com.mycompany.projet_info_s2;
  * @author hugog
  */
 public class Coin {
+    // Coucou
 
     @Override
     public String toString() {
