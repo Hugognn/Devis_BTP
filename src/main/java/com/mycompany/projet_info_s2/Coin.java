@@ -10,6 +10,7 @@ package com.mycompany.projet_info_s2;
  */
 public class Coin {
     // Coucou
+    // °_°
 
     @Override
     public String toString() {
