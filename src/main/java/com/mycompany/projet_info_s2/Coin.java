@@ -6,7 +6,7 @@ package com.mycompany.projet_info_s2;
 
 /**
  *
- * @author hugog
+ * @author sgourjon01
  */
 public class Coin {
     // Coucou
