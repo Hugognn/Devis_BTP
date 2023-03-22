@@ -9,9 +9,7 @@ package com.mycompany.projet_info_s2;
  * @author sgourjon01
  */
 public class Coin {
-    // Coucou
-    // °_°
-
+  
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

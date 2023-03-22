@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.projet_info_s2;
 
 /**
@@ -39,7 +35,7 @@ public class Projet_info_S2 {
          m1.afficher();
 //         System.out.println(c2.toString());
 //         System.out.println(m1.toString());
-         System.out.println("Longueur du mur ="+m1.longueur());
+        // System.out.println("Longueur du mur ="+m1.longueur());
          
          //Formattage de l'affichage
          System.out.format("\nLongueur du mur =%.2f",m1.longueur());
@@ -54,7 +50,7 @@ public class Projet_info_S2 {
          // Calcul et affichage de la surface d'un mur
          //double surface=m1.surface();
          //System.out.println(m1.toString()+"\nSurface :"+m1.surface());
-         System.out.format(m1.toString()+"\nSurface :%.2f",m1.surface());
+         //System.out.format(m1.toString()+"\nSurface :%.2f",m1.surface());
          
          System.out.println(" Identifiant du Revetement");
          id = Lire.i();
@@ -64,7 +60,7 @@ public class Projet_info_S2 {
          r1 = new Revetement(id,x);
          double montantRevetement;
         montantRevetement = calculMontantRevetement(m1, r1);
-         System.out.format("\nmontant revetement %.2f"+montantRevetement);   
+         System.out.println(montantRevetement);   
     }//fin methode main
     
     //def nouvelle methode statique
