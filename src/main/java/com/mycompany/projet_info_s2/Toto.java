@@ -9,5 +9,7 @@ package com.mycompany.projet_info_s2;
  * @author sgourjon01
  */
 public class Toto {
-    
+    public static void main(String[] args) {
+        System.out.println("hello world");
+    }
 }
