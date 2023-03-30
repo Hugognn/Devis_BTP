@@ -9,7 +9,7 @@ package com.mycompany.projet_info_s2;
  * @author killi
  */
 
-public class Immeuble {
+public class Immeuble extends Batiment{
     //attributs
     public static int idImmeuble;
     
