@@ -3,11 +3,14 @@ package com.mycompany.projet_info_s2;
 /**
  *
  * @author hugog
- */
+ 
 public class Projet_info_S2 {
 
     public static void main(String[] args) {
-        Coin c1;
+       
+        
+        
+        /*Coin c1;
         System.out.println(" Identifiant du Coin");
         int id=Lire.i();
         System.out.println(" Abscisse du Coin");
@@ -51,7 +54,7 @@ public class Projet_info_S2 {
          //double surface=m1.surface();
          //System.out.println(m1.toString()+"\nSurface :"+m1.surface());
          //System.out.format(m1.toString()+"\nSurface :%.2f",m1.surface());
-         
+         /*
          System.out.println(" Identifiant du Revetement");
          id = Lire.i();
          System.out.println(" Prix du revetement");
@@ -60,14 +63,17 @@ public class Projet_info_S2 {
          r1 = new Revetement(id,x);
          double montantRevetement;
         montantRevetement = calculMontantRevetement(m1, r1);
-         System.out.println(montantRevetement);   
+         System.out.println(montantRevetement);   */
     }//fin methode main
     
+    
+    /*
     //def nouvelle methode statique
     static double calculMontantRevetement(Mur m, Revetement r){
-        double montantRevetement = m.surface()*r.prixUnitaire;
+        double prixUnitaire = 1;
+        double montantRevetement = m.surface()*prixUnitaire; //r.prixUnitaire
         return (montantRevetement);
     }
-    
+    */
  }//Fin class principale
  
