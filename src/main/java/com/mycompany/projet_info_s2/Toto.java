@@ -10,6 +10,6 @@ package com.mycompany.projet_info_s2;
  */
 public class Toto {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        System.out.println("bonjour !");
     }
 }
