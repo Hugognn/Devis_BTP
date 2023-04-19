@@ -11,13 +11,15 @@ package com.mycompany.projet_info_s2;
 public class Mur {
     int idMur;
     Coin debut, fin;
+    Niveau niveau ;
     
     
     
-    Mur(int id, Coin dc, Coin fc){
+    Mur(int id, Coin dc, Coin fc, Niveau idn){
         this.idMur=id;
         this.debut=dc;
         this.fin=fc;
+        this.niveau=idn;
     }
     
     void afficher()
@@ -33,13 +35,11 @@ public class Mur {
     
     double surface()
     {
-        System.out.println("\nEntrer la Hauteur du mur (hauteur sous-plafond)");
-        double hsp=Lire.d();
-        return(this.longueur()*hsp);
+        return(this.longueur()*this.niveau.hsp);
     }
     @Override
     public String toString() {
-        return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + '}';
+        return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + ", idNiveau=" + this.niveau.idNiveau + "}";
     }
     
 }

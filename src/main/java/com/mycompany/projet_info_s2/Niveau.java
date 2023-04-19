@@ -11,12 +11,14 @@ package com.mycompany.projet_info_s2;
 public class Niveau {
     
     //attributs
-    public static int idNiveau;
-    public static int Appartements[];
+    int idNiveau;
+    int Appartements[];
+    float hsp ;
     
     //constructeur
-    public Niveau() {
-        this.idNiveau = 1;
+    Niveau(int idn, float h) {
+        this.idNiveau = idn;
+        this.hsp = h;
     }
     
     //methode "DevisNiveau"

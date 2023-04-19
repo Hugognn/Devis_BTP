@@ -8,10 +8,13 @@ package com.mycompany.projet_info_s2;
  *
  * @author Stéphane
  */
-    class Revetement{
+public class Peinture extends Revetement{
+    
+    int idPeinture ;
+    Peinture(int id, double prixpeinture){
+        this.idPeinture = id;
+        this.prix = prixpeinture;
         
-        double prix ;
-        int idRevement; 
-       abstract double montant();
+    }
     
 }
