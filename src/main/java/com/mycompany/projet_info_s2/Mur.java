@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projet_info_s2;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,6 +13,10 @@ public class Mur {
     int idMur;
     Coin debut, fin;
     Niveau niveau ;
+    ArrayList<Revetement> listeRevetements = new ArrayList<Revetement>();
+    int nbrePortes;
+    int nbreFenetres;
+    
     
     
     
@@ -41,5 +46,4 @@ public class Mur {
     public String toString() {
         return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + ", idNiveau=" + this.niveau.idNiveau + "}";
     }
-    
 }

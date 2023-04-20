@@ -10,8 +10,13 @@ package com.mycompany.projet_info_s2;
  */
     class Revetement{
         
-        double prix ;
-        int idRevement; 
-       abstract double montant();
+        double prixUnitaire ;
+        int idRevetement;
+        String designation;
+        boolean pourMur;
+        boolean pourSol;
+        boolean pourPlafond;
+        
+        
     
 }
