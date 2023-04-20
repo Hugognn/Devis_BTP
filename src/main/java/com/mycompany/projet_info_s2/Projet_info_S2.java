@@ -58,7 +58,7 @@ public class Projet_info_S2{
             int r = Lire.i();
             m1.listeRevetements = m1.listeRevetements.add();
             double hr  = Lire.d();
-            m1.hauteur = m1.hauteur.add(hr)
+            m1.hauteur = m1.hauteur.add(hr);
             
             
             
