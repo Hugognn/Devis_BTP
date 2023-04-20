@@ -18,5 +18,4 @@ package com.mycompany.projet_info_s2;
         boolean pourPlafond;
         
         
-    
 }

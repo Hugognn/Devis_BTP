@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projet_info_s2;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -18,11 +23,13 @@ public class Mur {
     ArrayList<Integer> SaisieIdR = new ArrayList<Integer>();    //identifiant du revetement
     ArrayList<Double> SaisieHR = new ArrayList<Double>();       //hauteur du revetement
     
-    Mur(int id, Coin dc, Coin fc, Niveau idn){
+    Mur(int id, Coin dc, Coin fc, Niveau idn, int nbF, int nbP){
         this.idMur=id;
         this.debut=dc;
         this.fin=fc;
         this.niveau=idn;
+        this.nbreFenetres = nbF;
+        this.nbrePortes = nbP;
     }
     
     void afficher()
@@ -42,7 +49,7 @@ public class Mur {
     }
     @Override
     public String toString() {
-        return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + ", idNiveau=" + this.niveau.idNiveau + "}";
+        return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + ", idNiveau=" + this.niveau.idNiveau + ", nombre de Fenetres=" + this.nbreFenetres + ", nombre de Portes=" + this.nbrePortes + "}";
     }
     
     void SaisieRevetementsMur(){
@@ -59,8 +66,8 @@ public class Mur {
                     r = Lire.i();
                 }
                 double hr = Lire.d();
-                while ((hr<=hauteurtotaler) || (hr>this.niveau.hsp)){
-                    System.out.println("Il y a déjà un revetement jusqu'à cette hauteur ou l'hauteur demandé est plus haute que la taille de la pièce, veuillez choisir une nouvelle hauteur :");
+                while (hr>this.niveau.hsp){
+                    System.out.println("L'hauteur demandé est plus haute que la taille de la pièce, veuillez choisir une nouvelle hauteur :");
                     hr = Lire.d();
                 }
                 hauteurtotaler = hr;
@@ -73,5 +80,33 @@ public class Mur {
             for (int m =0; m<this.SaisieIdR.size(); m++){
                 System.out.println(this.SaisieIdR.get(m) +" ; "+ this.SaisieHR.get(m));
             }
+    }
+    
+    double MontantRevetement() throws FileNotFoundException, IOException{
+        //File fichier=new File("CatalogueRevetements.txt");
+        FileReader fr = new FileReader("CatalogueRevetements.txt");
+        BufferedReader br = new BufferedReader(fr);
+        int i=0;
+        String[][] elements;
+        String ligne;
+        while((ligne = br.readLine())!=null){
+            String[] elements2= ligne.split(";");
+            for(int j=0;j<elements2.length;j++)
+            {
+                elements[i]=elements2;
+            }
+            i++;
+        }
+        String[] elements = ligne.split(";");
+        System.out.print(elements[5]);
+        //BufferedReader reader = new BufferedReader("CatalogueRevetements.txt");
+//        double montantrevetement = 0;
+//        int h =1;                               //Pas fait de la manière la plus efficace mais fonctionne
+//        montantrevetement = montantrevetement +(this.longueur()*this.SaisieHR.get(0)*);         //Ajouter les prix
+//        while(h<this.SaisieIdR.size()){
+//            montantrevetement = montantrevetement + (this.longueur()*(this.SaisieHR.get(h)-this.SaisieHR.get(h-1)*);
+//            h = h+1 ;
+//        }
+        return 2 ;
     }
 }
