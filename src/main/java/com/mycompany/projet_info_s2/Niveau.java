@@ -13,10 +13,10 @@ public class Niveau {
     //attributs
     int idNiveau;
     int Appartements[];
-    float hsp ;
+    double hsp ;
     
     //constructeur
-    Niveau(int idn, float h) {
+    Niveau(int idn, double h) {
         this.idNiveau = idn;
         this.hsp = h;
     }

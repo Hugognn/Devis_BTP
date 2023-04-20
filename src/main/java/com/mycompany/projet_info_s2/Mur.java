@@ -16,6 +16,7 @@ public class Mur {
     ArrayList<Revetement> listeRevetements = new ArrayList<Revetement>();
     int nbrePortes;
     int nbreFenetres;
+    ArrayList<double> hauteur = new ArrayList<double>();
     
     
     
