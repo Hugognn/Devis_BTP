@@ -41,29 +41,8 @@ public class Projet_info_S2{
 
          System.out.println("La surface du mur est de :" + m1.surface() + " m²");
          
-         //Revetement
-//         System.out.println("Identifiant Revêtement :");
-//         int idRevetement1 = Lire.i();
-//         System.out.println("Jusqu'à quelle hauteur ? :");
-//         double hrevetement1 = Lire.d();
-//         if (hrevetement1 <= N1.hsp){
-//            System.out.println("Identifiant Deuxième Revêtement :");
-//            int idRevetement2 = Lire.i();
-
-        double sommeh=0;
-        int i = 0;
-        System.out.println("Nous allons donner la liste des revetements du mur de bas en haut.");
-        while (sommeh<m1.niveau.hsp){
-            System.out.println("Identifiant revetement, jusqu'à quelle hauteure");
-            int r = Lire.i();
-            m1.listeRevetements = m1.listeRevetements.add();
-            double hr  = Lire.d();
-            m1.hauteur = m1.hauteur.add(hr);
-            
-            
-            
-            
-        }
+        // Définir les revetements et l'hauteur du revetements
+         m1.SaisieRevetementsMur();
     }
          
 }

@@ -24,8 +24,6 @@ public class Batiment {
     public static void afficher(){
         System.out.println("idBatiment = "+idBatiment);
     }
-    static double surfaceRevetement(Revetement idRevetement){
-        double surfaceRevetement =   ;
-        return surfaceRevetement;
-    }
+    //static double surfaceRevetement(Revetement idRevetement){
+    //}
 }

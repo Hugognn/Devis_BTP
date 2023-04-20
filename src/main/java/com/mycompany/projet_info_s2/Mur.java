@@ -13,13 +13,10 @@ public class Mur {
     int idMur;
     Coin debut, fin;
     Niveau niveau ;
-    ArrayList<Revetement> listeRevetements = new ArrayList<Revetement>();
     int nbrePortes;
     int nbreFenetres;
-    ArrayList<double> hauteur = new ArrayList<double>();
-    
-    
-    
+    ArrayList<Integer> SaisieIdR = new ArrayList<Integer>();    //identifiant du revetement
+    ArrayList<Double> SaisieHR = new ArrayList<Double>();       //hauteur du revetement
     
     Mur(int id, Coin dc, Coin fc, Niveau idn){
         this.idMur=id;
@@ -46,5 +43,35 @@ public class Mur {
     @Override
     public String toString() {
         return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + ", idNiveau=" + this.niveau.idNiveau + "}";
+    }
+    
+    void SaisieRevetementsMur(){
+        this.SaisieIdR.clear();
+        this.SaisieHR.clear();
+        int p = 0 ;
+        double hauteurtotaler=0;
+            System.out.println("Nous allons donner la liste des revetements du mur de bas en haut.");
+            while (hauteurtotaler<this.niveau.hsp){
+                System.out.println("Identifiant revetement, jusqu'à quelle hauteure");
+                int r = Lire.i();
+                while (SaisieIdR.contains(r)){
+                    System.out.println("Ce revetement est déjà présent sur ce mur, veuillez en choisir un autre :");
+                    r = Lire.i();
+                }
+                double hr = Lire.d();
+                while ((hr<=hauteurtotaler) || (hr>this.niveau.hsp)){
+                    System.out.println("Il y a déjà un revetement jusqu'à cette hauteur ou l'hauteur demandé est plus haute que la taille de la pièce, veuillez choisir une nouvelle hauteur :");
+                    hr = Lire.d();
+                }
+                hauteurtotaler = hr;
+                this.SaisieIdR.add(p,r);
+                this.SaisieHR.add(p,hr);
+                System.out.println(this.SaisieIdR.get(p) +" ; "+ this.SaisieHR.get(p));
+                p = p+1;
+            }
+            System.out.println();
+            for (int m =0; m<this.SaisieIdR.size(); m++){
+                System.out.println(this.SaisieIdR.get(m) +" ; "+ this.SaisieHR.get(m));
+            }
     }
 }
