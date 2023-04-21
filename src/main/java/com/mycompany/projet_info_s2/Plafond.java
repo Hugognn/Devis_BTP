@@ -21,6 +21,7 @@ public class Plafond {
     int idPlafond;
     double surface;
     double prix;
+    Niveau niveau;          //Pas sûr de l'utilité
     
     Plafond(int id, Coin[]C) throws IOException{
         this.idPlafond = id;

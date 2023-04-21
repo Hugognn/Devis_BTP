@@ -16,7 +16,7 @@ public class Piece {
     int idPiece;
     Sol sol;
     Plafond plafond;
-    Niveau niveau;
+    Niveau niveau;                              //
     ArrayList<Mur> listeMurs = new ArrayList<Mur>();        //La pièce peut contenir moins de 4 murs, si c'est une terasse par exemple
     double prix;
     
@@ -28,7 +28,7 @@ public class Piece {
         this.prix = montantRevetement();
     }
     
-    ArrayList<Mur> definitionMurs() throws IOException{
+    public ArrayList<Mur> definitionMurs() throws IOException{
         this.listeMurs.clear();
         System.out.println("Combien de murs voulez-vous dans votre pièce ?");
         int nbrmurs = Lire.i();

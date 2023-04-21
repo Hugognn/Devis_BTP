@@ -18,6 +18,7 @@ public class Sol {
     //Attributs
     Coin [] CS = new Coin[4];                   //Considérer une pièce rectangulaire
     ArrayList<Integer> RS = new ArrayList<Integer>();
+    Niveau niveau;          //Pas sûr de l'utilité
     int idSol;
     double surface;
     double prix;
