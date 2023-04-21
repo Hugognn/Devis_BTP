@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.lang.Double;
 
 /**
  *
@@ -76,37 +77,38 @@ public class Mur {
                 System.out.println(this.SaisieIdR.get(p) +" ; "+ this.SaisieHR.get(p));
                 p = p+1;
             }
-            System.out.println();
-            for (int m =0; m<this.SaisieIdR.size(); m++){
-                System.out.println(this.SaisieIdR.get(m) +" ; "+ this.SaisieHR.get(m));
-            }
+//            System.out.println();
+//            for (int m =0; m<this.SaisieIdR.size(); m++){
+//                System.out.println(this.SaisieIdR.get(m) +" ; "+ this.SaisieHR.get(m));
+//            }
     }
     
-    double MontantRevetement() throws FileNotFoundException, IOException{
-        //File fichier=new File("CatalogueRevetements.txt");
+    public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
         FileReader fr = new FileReader("CatalogueRevetements.txt");
         BufferedReader br = new BufferedReader(fr);
         int i=0;
-        String[][] elements;
+        String[][] elements = new String [255][255];
         String ligne;
         while((ligne = br.readLine())!=null){
             String[] elements2= ligne.split(";");
             for(int j=0;j<elements2.length;j++)
             {
-                elements[i]=elements2;
+                elements[i][j]=elements2[j];
             }
             i++;
         }
-        String[] elements = ligne.split(";");
-        System.out.print(elements[5]);
-        //BufferedReader reader = new BufferedReader("CatalogueRevetements.txt");
-//        double montantrevetement = 0;
-//        int h =1;                               //Pas fait de la manière la plus efficace mais fonctionne
-//        montantrevetement = montantrevetement +(this.longueur()*this.SaisieHR.get(0)*);         //Ajouter les prix
-//        while(h<this.SaisieIdR.size()){
-//            montantrevetement = montantrevetement + (this.longueur()*(this.SaisieHR.get(h)-this.SaisieHR.get(h-1)*);
-//            h = h+1 ;
-//        }
-        return 2 ;
+        double value = Double.parseDouble(elements[r][5]);
+        return value;
+    }
+    
+    double MontantRevetement() throws FileNotFoundException, IOException{
+        double montantrevetement = 0;
+        int h =1;                               //Pas fait de la manière la plus efficace mais fonctionne
+        montantrevetement = montantrevetement +(this.longueur()*this.SaisieHR.get(0)*(Mur.this.lecturepixrevetement(this.SaisieIdR.get(0))));
+        while(h<this.SaisieIdR.size()){
+            montantrevetement = montantrevetement + (this.longueur()*(this.SaisieHR.get(h)-this.SaisieHR.get(h-1))*(Mur.this.lecturepixrevetement(this.SaisieIdR.get(h))));
+            h = h+1 ;
+        }
+        return montantrevetement ;
     }
 }

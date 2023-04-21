@@ -1,7 +1,11 @@
 package com.mycompany.projet_info_s2;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.lang.Double;
 
 public class Projet_info_S2{
     
@@ -44,7 +48,6 @@ public class Projet_info_S2{
          
         // Définir les revetements et l'hauteur du revetement en question
          m1.SaisieRevetementsMur();
-         m1.MontantRevetement();
-    }
-         
+         System.out.println(m1.MontantRevetement());
+    } 
 }
