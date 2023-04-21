@@ -36,7 +36,7 @@ public class Mur {
         this.nbrePortes = nbP;
         this.longueur=(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
         this.surface=(this.longueur*this.niveau.hsp);
-        this.SaisieRevetementsMur();
+        this.SaisieRevetementsMur();            //permet de remplir les arraylist SaisieIdR et SaisieHR
         this.prix = this.MontantRevetement();
     }
     
