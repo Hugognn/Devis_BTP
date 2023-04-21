@@ -23,14 +23,21 @@ public class Mur {
     int nbreFenetres;
     ArrayList<Integer> SaisieIdR = new ArrayList<Integer>();    //identifiant du revetement
     ArrayList<Double> SaisieHR = new ArrayList<Double>();       //hauteur du revetement
+    double longueur;
+    double surface ;
+    double prix;
     
-    Mur(int id, Coin dc, Coin fc, Niveau idn, int nbF, int nbP){
+    Mur(int id, Coin dc, Coin fc, Niveau idn, int nbF, int nbP) throws FileNotFoundException, IOException{
         this.idMur=id;
         this.debut=dc;
         this.fin=fc;
         this.niveau=idn;
         this.nbreFenetres = nbF;
         this.nbrePortes = nbP;
+        this.longueur=(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
+        this.surface=(this.longueur*this.niveau.hsp);
+        this.SaisieRevetementsMur();
+        this.prix = this.MontantRevetement();
     }
     
     void afficher()
@@ -39,33 +46,54 @@ public class Mur {
         this.fin.afficher();    
     }
     
-    double longueur()
-    {
-        return(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
-    }
+//    double longueur()
+//    {
+//        return(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
+//    }
     
-    double surface()
-    {
-        return(this.longueur()*this.niveau.hsp);
-    }
+//    double surface()
+//    {
+//        return(this.longueur*this.niveau.hsp);
+//    }
     @Override
     public String toString() {
         return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + ", idNiveau=" + this.niveau.idNiveau + ", nombre de Fenetres=" + this.nbreFenetres + ", nombre de Portes=" + this.nbrePortes + "}";
     }
     
-    void SaisieRevetementsMur(){
+    void SaisieRevetementsMur() throws FileNotFoundException, IOException{
+        
         this.SaisieIdR.clear();
         this.SaisieHR.clear();
         int p = 0 ;
         double hauteurtotaler=0;
+        
+        FileReader fr = new FileReader("CatalogueRevetements.txt");
+        BufferedReader br = new BufferedReader(fr);
+        int i = 0;
+        String[][] elements = new String[100][100];
+        String ligne ;
+        while((ligne = br.readLine())!=null){
+            String[] elements2= ligne.split(";");
+            for(int j=0;j<elements2.length;j++)
+            {
+                elements[i][j]=elements2[j];
+            }
+            i++;
+        }
+        
+        double value;
+        
+        
             System.out.println("Nous allons donner la liste des revetements du mur de bas en haut.");
             while (hauteurtotaler<this.niveau.hsp){
                 System.out.println("Identifiant revetement, jusqu'à quelle hauteure");
                 int r = Lire.i();
-                while (SaisieIdR.contains(r)){
-                    System.out.println("Ce revetement est déjà présent sur ce mur, veuillez en choisir un autre :");
+                
+                while ((SaisieIdR.contains(r)) || (r>19) || (r<1) || ((value=Double.parseDouble(elements[r][2]))== 0)){                                     //Faire la saisie forcé d'un revetement special mur
+                    System.out.println("Ce revetement est soit déjà présent sur le mur, soit il n'existe pas ou alors il n'est pas addapté pour les murs :");
                     r = Lire.i();
                 }
+                
                 double hr = Lire.d();
                 while (hr>this.niveau.hsp){
                     System.out.println("L'hauteur demandé est plus haute que la taille de la pièce, veuillez choisir une nouvelle hauteur :");
@@ -77,17 +105,13 @@ public class Mur {
                 System.out.println(this.SaisieIdR.get(p) +" ; "+ this.SaisieHR.get(p));
                 p = p+1;
             }
-//            System.out.println();
-//            for (int m =0; m<this.SaisieIdR.size(); m++){
-//                System.out.println(this.SaisieIdR.get(m) +" ; "+ this.SaisieHR.get(m));
-//            }
     }
     
     public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
         FileReader fr = new FileReader("CatalogueRevetements.txt");
         BufferedReader br = new BufferedReader(fr);
         int i=0;
-        String[][] elements = new String [255][255];
+        String[][] elements = new String [100][100];
         String ligne;
         while((ligne = br.readLine())!=null){
             String[] elements2= ligne.split(";");
@@ -104,9 +128,9 @@ public class Mur {
     double MontantRevetement() throws FileNotFoundException, IOException{
         double montantrevetement = 0;
         int h =1;                               //Pas fait de la manière la plus efficace mais fonctionne
-        montantrevetement = montantrevetement +(this.longueur()*this.SaisieHR.get(0)*(Mur.this.lecturepixrevetement(this.SaisieIdR.get(0))));
+        montantrevetement = montantrevetement +(this.longueur*this.SaisieHR.get(0)*(Mur.this.lecturepixrevetement(this.SaisieIdR.get(0))));
         while(h<this.SaisieIdR.size()){
-            montantrevetement = montantrevetement + (this.longueur()*(this.SaisieHR.get(h)-this.SaisieHR.get(h-1))*(Mur.this.lecturepixrevetement(this.SaisieIdR.get(h))));
+            montantrevetement = montantrevetement + (this.longueur*(this.SaisieHR.get(h)-this.SaisieHR.get(h-1))*(Mur.this.lecturepixrevetement(this.SaisieIdR.get(h))));
             h = h+1 ;
         }
         return montantrevetement ;

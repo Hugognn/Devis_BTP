@@ -42,12 +42,11 @@ public class Projet_info_S2{
          m1.afficher();
          System.out.println(m1.toString());
          //Format de l'affichage
-         System.out.printf("\nLongueur du mur =%.3f\n",m1.longueur());
+         System.out.printf("\nLongueur du mur =%.3f\n",m1.longueur);
 
-         System.out.println("La surface du mur est de :" + m1.surface() + " m²");
+         System.out.println("La surface du mur est de :" + m1.surface + " m²");
          
         // Définir les revetements et l'hauteur du revetement en question
-         m1.SaisieRevetementsMur();
-         System.out.println(m1.MontantRevetement());
+         System.out.println(m1.prix);
     } 
 }
