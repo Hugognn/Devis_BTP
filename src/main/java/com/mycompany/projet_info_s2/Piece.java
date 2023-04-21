@@ -14,17 +14,18 @@ import java.util.ArrayList;
 public class Piece {
     
     int idPiece;
-    int sol;
-    int plafond;
+    Sol sol;
+    Plafond plafond;
     Niveau niveau;
     ArrayList<Mur> listeMurs = new ArrayList<Mur>();        //La pièce peut contenir moins de 4 murs, si c'est une terasse par exemple
-    //ArrayList<Coin> listeCoins = new ArrayList<Coin>();
+    double prix;
     
     Piece(int id,ArrayList<Mur> listeM, Sol sol, Plafond plafond) throws IOException{
         this.idPiece = id;
-        this.sol = sol.idSol;
-        this.plafond = plafond.idPlafond;
+        this.sol = sol;
+        this.plafond = plafond;
         this.listeMurs = definitionMurs();
+        this.prix = montantRevetement();
     }
     
     ArrayList<Mur> definitionMurs() throws IOException{
@@ -80,6 +81,10 @@ public class Piece {
     
     double montantRevetement(){
         double montant = 0;
+        montant = this.plafond.prix + this.sol.prix ;
+        for (int j = 0; j<this.listeMurs.size(); j++ ){
+            montant = montant + this.listeMurs.get(j).prix;
+        }
         return montant;
     }
 }

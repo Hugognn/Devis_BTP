@@ -4,34 +4,16 @@
  */
 package com.mycompany.projet_info_s2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author killi
  */
 public class Appartement {
     
-    //attributs
-    public static int idAppartement;
+    int idAppartement;
+    ArrayList<Piece> listePieces = new ArrayList<Pieces>();
     
-    //constructeur
-    public Appartement() {
-        this.idAppartement = 1;
-    }
     
-    //methode "devisAppartement"
-    public static double devisAppartement(){
-        System.out.println("devisAppartement = ");
-        return(1);
-    }
-    
-    //methode "surface"
-    public static double surface(){
-        System.out.println("surface = ");
-        return(1);
-    }
-    
-    //methode "dessiner"
-    public static void dessiner(){
-        System.out.println("dessiner");
-    }
 }
