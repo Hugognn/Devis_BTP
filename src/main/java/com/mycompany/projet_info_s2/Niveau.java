@@ -4,6 +4,9 @@
  */
 package com.mycompany.projet_info_s2;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  *
  * @author killi
@@ -12,19 +15,39 @@ public class Niveau {
     
     //attributs
     int idNiveau;
-    int Appartements[];
+    ArrayList<Appartement> listeAppartement = new ArrayList<Appartement>();
     double hsp ;
+    double prix ;
     
     //constructeur
-    Niveau(int idn, double h) {
-        this.idNiveau = idn;
+    Niveau(int id, double h) throws IOException {
+        this.idNiveau = id;
         this.hsp = h;
+        this.listeAppartement = definitionAppartements();
+        this.prix = montantRevetement();
     }
     
-    //methode "DevisNiveau"
-    public static double DevisNiveau(){
-        System.out.println("DevisNiveau = ");
-        return(1);
+    public ArrayList<Appartement> definitionAppartements() throws IOException{          //"public" sera surement a enlever
+        ArrayList<Appartement> liste = new ArrayList<Appartement>();
+        System.out.println("Combien voulez-vous d'appartement à ce niveau ?");
+        int nbrniveaux = Lire.i();
+        while (nbrniveaux<1){
+            System.out.println("Ceci ne définit pas un niveau, veuillez saisir un autre nombre de pièces :");
+            nbrniveaux = Lire.i();
+        }
+        for (int i=0;i<nbrniveaux;i++){
+            Appartement A = new Appartement (i);
+            liste.add(i,A);
+        }
+        return liste;
+    }
+    
+    double montantRevetement(){
+        double montant = 0;
+        for (int i=0;i<this.listeAppartement.size();i++){
+            montant = montant + this.listeAppartement.get(i).prix;
+        }
+        return montant;
     }
 
 }

@@ -20,7 +20,7 @@ public class Piece {
     ArrayList<Mur> listeMurs = new ArrayList<Mur>();        //La pièce peut contenir moins de 4 murs, si c'est une terasse par exemple
     double prix;
     
-    Piece(int id,ArrayList<Mur> listeM, Sol sol, Plafond plafond) throws IOException{
+    Piece(int id,Sol sol, Plafond plafond) throws IOException{
         this.idPiece = id;
         this.sol = sol;
         this.plafond = plafond;
@@ -29,7 +29,7 @@ public class Piece {
     }
     
     public ArrayList<Mur> definitionMurs() throws IOException{
-        this.listeMurs.clear();
+        ArrayList<Mur> liste = new ArrayList<Mur>();
         System.out.println("Combien de murs voulez-vous dans votre pièce ?");
         int nbrmurs = Lire.i();
         while ((nbrmurs<1) || (nbrmurs>4)){
@@ -56,27 +56,29 @@ public class Piece {
             int nbrportes = Lire.i();
             System.out.println("Nombre de fenetres :");
             int nbrfenetres = Lire.i();
+            Mur m = new Mur(i,c1,c2,niveau,nbrfenetres,nbrportes);
+                liste.add(i,m);
             
-            switch(i){
-                case 0:
-                    Mur m1 = new Mur(1,c1,c2,niveau,nbrfenetres,nbrportes);
-                    this.listeMurs.add(i,m1);
-                    break;
-                case 1:
-                    Mur m2 = new Mur(2,c1,c2,niveau,nbrfenetres,nbrportes);
-                    this.listeMurs.add(i,m2);
-                    break;
-                case 2:
-                    Mur m3 = new Mur(3,c1,c2,niveau,nbrfenetres,nbrportes);
-                    this.listeMurs.add(i,m3);
-                    break;
-                case 3:
-                    Mur m4 = new Mur(4,c1,c2,niveau,nbrfenetres,nbrportes);
-                    this.listeMurs.add(i,m4);
-                    break;
-            }
+//            switch(i){
+//                case 0:
+//                    Mur m1 = new Mur(1,c1,c2,niveau,nbrfenetres,nbrportes);
+//                    this.listeMurs.add(i,m1);
+//                    break;
+//                case 1:
+//                    Mur m2 = new Mur(2,c1,c2,niveau,nbrfenetres,nbrportes);
+//                    this.listeMurs.add(i,m2);
+//                    break;
+//                case 2:
+//                    Mur m3 = new Mur(3,c1,c2,niveau,nbrfenetres,nbrportes);
+//                    this.listeMurs.add(i,m3);
+//                    break;
+//                case 3:
+//                    Mur m4 = new Mur(4,c1,c2,niveau,nbrfenetres,nbrportes);
+//                    this.listeMurs.add(i,m4);
+//                    break;
+//            }
         }
-        return this.listeMurs;
+        return liste;
     }
     
     double montantRevetement(){
