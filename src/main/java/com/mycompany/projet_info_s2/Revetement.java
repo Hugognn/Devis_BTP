@@ -8,7 +8,7 @@ package com.mycompany.projet_info_s2;
  *
  * @author Stéphane
  */
-    class Revetement{
+    class Revetement{                   //Avec la manière dont ça a été codé jusqu'a présent, elle est inutile, comme "Ouverture"
         
         double prixUnitaire ;
         int idRevetement;
