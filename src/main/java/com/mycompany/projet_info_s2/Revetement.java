@@ -67,15 +67,10 @@ import java.io.IOException;
                 i++;
             }return elements;
         }
-        
-//        double prix = Double.parseDouble(elements[r][5]);
-//        return value;
-    }
+
         
 //        double montantTotalRevetement(){
+//        }
 //        
 //            
-//        }
-        
-        
 }

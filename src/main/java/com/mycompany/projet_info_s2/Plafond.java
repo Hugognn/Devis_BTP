@@ -68,21 +68,6 @@ public class Plafond {
         this.SaisieIdRP.clear();
         this.SaisieR.clear();
         int p = 0;
-//        FileReader fr = new FileReader("CatalogueRevetements.txt");
-//        BufferedReader br = new BufferedReader(fr);
-//        int i = 0;
-//        String[][] elements = new String[100][100];
-//        String ligne ;
-//        while((ligne = br.readLine())!=null){
-//            String[] elements2= ligne.split(";");
-//            for(int j=0;j<elements2.length;j++)
-//            {
-//                elements[i][j]=elements2[j];
-//            }
-//            i++;
-//        }
-//        
-//        double value;
         String reponse = "Oui";
         System.out.println("Nous allons donner la liste des revetements du plafond, le revetement sera appliqué sur la totalité du plafond.");
         while (reponse.equalsIgnoreCase("oui")){
@@ -103,24 +88,6 @@ public class Plafond {
         }
         
     }
-    
-//    public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
-//        FileReader fr = new FileReader("CatalogueRevetements.txt");
-//        BufferedReader br = new BufferedReader(fr);
-//        int i=0;
-//        String[][] elements = new String [100][100];
-//        String ligne;
-//        while((ligne = br.readLine())!=null){
-//            String[] elements2= ligne.split(";");
-//            for(int j=0;j<elements2.length;j++)
-//            {
-//                elements[i][j]=elements2[j];
-//            }
-//            i++;
-//        }
-//        double value = Double.parseDouble(elements[r][5]);
-//        return value;
-//    }
     
     double MontantRevetement() throws FileNotFoundException, IOException{
         double montantrevetement = 0;
