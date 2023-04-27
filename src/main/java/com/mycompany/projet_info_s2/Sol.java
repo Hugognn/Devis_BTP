@@ -17,8 +17,9 @@ import java.util.ArrayList;
 public class Sol {
     //Attributs
     Coin [] CS = new Coin[4];                   //Considérer une pièce rectangulaire
-    ArrayList<Integer> RS = new ArrayList<Integer>();
-    Niveau niveau;          //Pas sûr de l'utilité
+    ArrayList<Integer> SaisieIdRS = new ArrayList<Integer>();
+    ArrayList<Revetement> SaisieR = new ArrayList<Revetement>();
+    //Niveau niveau;          //Pas sûr de l'utilité
     int idSol;
     double surface;
     double prix;
@@ -65,35 +66,39 @@ public class Sol {
     
     void SaisieRevetementsSol() throws FileNotFoundException, IOException{
         
-        this.RS.clear();
-        int p = 0;
-        FileReader fr = new FileReader("CatalogueRevetements.txt");
-        BufferedReader br = new BufferedReader(fr);
-        int i = 0;
-        String[][] elements = new String[100][100];
-        String ligne ;
-        while((ligne = br.readLine())!=null){
-            String[] elements2= ligne.split(";");
-            for(int j=0;j<elements2.length;j++)
-            {
-                elements[i][j]=elements2[j];
-            }
-            i++;
-        }
+        this.SaisieIdRS.clear();
+        this.SaisieR.clear();
         
-        double value;
+        int p = 0;
+//        FileReader fr = new FileReader("CatalogueRevetements.txt");
+//        BufferedReader br = new BufferedReader(fr);
+//        int i = 0;
+//        String[][] elements = new String[100][100];
+//        String ligne ;
+//        while((ligne = br.readLine())!=null){
+//            String[] elements2= ligne.split(";");
+//            for(int j=0;j<elements2.length;j++)
+//            {
+//                elements[i][j]=elements2[j];
+//            }
+//            i++;
+//        }
+//        
+//        double value;
         String reponse = "Oui";
         System.out.println("Nous allons donner la liste des revetements du sol, le revetement sera appliqué sur la totalité du sol.");
         while (reponse.equalsIgnoreCase("oui")){
             System.out.println("Identifiant revetement :");
             int r = Lire.i();
-
-            while ((RS.contains(r)) || (r>19) || (r<1) || ((value=Double.parseDouble(elements[r][3]))== 0)){                                     //Faire la saisie forcé d'un revetement special mur
+            Revetement r1 = new Revetement(r);
+            this.SaisieR.add(p,r1);
+            while ((SaisieIdRS.contains(r)) || (r>19) || (r<1) || (this.SaisieR.get(p).pourSol == false)){                                     //Faire la saisie forcé d'un revetement special mur
                 System.out.println("Ce revetement est soit déjà présent sur le sol, soit il n'existe pas ou alors il n'est pas addapté pour les sols :");
                 r = Lire.i();
+                this.SaisieR.set(p, new Revetement(r));
             }
-            this.RS.add(p,r);
-            System.out.println(this.RS.get(p));
+            this.SaisieIdRS.add(p,r);
+            System.out.println(this.SaisieIdRS.get(p));
             p = p+1;
             System.out.println("Voulez vous appliquer un autre revetement ? Oui/Non");
             reponse = Lire.S();
@@ -101,29 +106,29 @@ public class Sol {
         
     }
     
-    public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
-        FileReader fr = new FileReader("CatalogueRevetements.txt");
-        BufferedReader br = new BufferedReader(fr);
-        int i=0;
-        String[][] elements = new String [100][100];
-        String ligne;
-        while((ligne = br.readLine())!=null){
-            String[] elements2= ligne.split(";");
-            for(int j=0;j<elements2.length;j++)
-            {
-                elements[i][j]=elements2[j];
-            }
-            i++;
-        }
-        double value = Double.parseDouble(elements[r][5]);
-        return value;
-    }
+//    public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
+//        FileReader fr = new FileReader("CatalogueRevetements.txt");
+//        BufferedReader br = new BufferedReader(fr);
+//        int i=0;
+//        String[][] elements = new String [100][100];
+//        String ligne;
+//        while((ligne = br.readLine())!=null){
+//            String[] elements2= ligne.split(";");
+//            for(int j=0;j<elements2.length;j++)
+//            {
+//                elements[i][j]=elements2[j];
+//            }
+//            i++;
+//        }
+//        double value = Double.parseDouble(elements[r][5]);
+//        return value;
+//    }
     
     double MontantRevetement() throws FileNotFoundException, IOException{
         double montantrevetement = 0;
         int h =0;                               //Pas fait de la manière la plus efficace mais fonctionne
-        while(h<this.RS.size()){
-            montantrevetement = montantrevetement + this.surface*(Sol.this.lecturepixrevetement(this.RS.get(h)));
+        while(h<this.SaisieIdRS.size()){
+            montantrevetement = montantrevetement + this.surface*(this.SaisieR.get(h).prixUnitaire);
             h = h+1 ;
         }
         return montantrevetement ;

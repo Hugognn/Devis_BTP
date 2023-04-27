@@ -52,11 +52,8 @@ public class Piece {
             System.out.println(" Ordonnée du Coin");
             y=Lire.d();
             Coin c2=new Coin(id,x,y);
-            System.out.println("Nombre de portes :");
-            int nbrportes = Lire.i();
-            System.out.println("Nombre de fenetres :");
-            int nbrfenetres = Lire.i();
-            Mur m = new Mur(i,c1,c2,niveau,nbrfenetres,nbrportes);
+            
+            Mur m = new Mur(i,c1,c2);
                 liste.add(i,m);
             
 //            switch(i){

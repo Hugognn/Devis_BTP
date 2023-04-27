@@ -17,11 +17,11 @@ import java.util.ArrayList;
 public class Plafond {
     
     Coin [] CP = new Coin[4];               // Considérer une pièce rectangulaire    
-    ArrayList<Integer> RP = new ArrayList<Integer>();
+    ArrayList<Integer> SaisieIdRP = new ArrayList<Integer>();
+    ArrayList<Revetement> SaisieR = new ArrayList<Revetement>();
     int idPlafond;
     double surface;
     double prix;
-    Niveau niveau;          //Pas sûr de l'utilité
     
     Plafond(int id, Coin[]C) throws IOException{
         this.idPlafond = id;
@@ -65,35 +65,38 @@ public class Plafond {
     
     void SaisieRevetementsPlafond() throws FileNotFoundException, IOException{
         
-        this.RP.clear();
+        this.SaisieIdRP.clear();
+        this.SaisieR.clear();
         int p = 0;
-        FileReader fr = new FileReader("CatalogueRevetements.txt");
-        BufferedReader br = new BufferedReader(fr);
-        int i = 0;
-        String[][] elements = new String[100][100];
-        String ligne ;
-        while((ligne = br.readLine())!=null){
-            String[] elements2= ligne.split(";");
-            for(int j=0;j<elements2.length;j++)
-            {
-                elements[i][j]=elements2[j];
-            }
-            i++;
-        }
-        
-        double value;
+//        FileReader fr = new FileReader("CatalogueRevetements.txt");
+//        BufferedReader br = new BufferedReader(fr);
+//        int i = 0;
+//        String[][] elements = new String[100][100];
+//        String ligne ;
+//        while((ligne = br.readLine())!=null){
+//            String[] elements2= ligne.split(";");
+//            for(int j=0;j<elements2.length;j++)
+//            {
+//                elements[i][j]=elements2[j];
+//            }
+//            i++;
+//        }
+//        
+//        double value;
         String reponse = "Oui";
         System.out.println("Nous allons donner la liste des revetements du plafond, le revetement sera appliqué sur la totalité du plafond.");
         while (reponse.equalsIgnoreCase("oui")){
             System.out.println("Identifiant revetement :");
             int r = Lire.i();
-
-            while ((RP.contains(r)) || (r>19) || (r<1) || ((value=Double.parseDouble(elements[r][4]))== 0)){                                     //Faire la saisie forcé d'un revetement special mur
+            Revetement r1 = new Revetement(r);
+            this.SaisieR.add(p,r1);
+            while ((SaisieIdRP.contains(r)) || (r>19) || (r<1) || (this.SaisieR.get(p).pourPlafond == false)){                                     //Faire la saisie forcé d'un revetement special mur
                 System.out.println("Ce revetement est soit déjà présent sur le plafond, soit il n'existe pas ou alors il n'est pas addapté pour les plafonds :");
                 r = Lire.i();
+                this.SaisieR.set(p, new Revetement (r));
             }
-            this.RP.add(p,r);
-            System.out.println(this.RP.get(p));
+            this.SaisieIdRP.add(p,r);
+            System.out.println(this.SaisieIdRP.get(p));
             p = p+1;
             System.out.println("Voulez vous appliquer un autre revetement ? Oui/Non");
             reponse = Lire.S();
@@ -101,29 +104,29 @@ public class Plafond {
         
     }
     
-    public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
-        FileReader fr = new FileReader("CatalogueRevetements.txt");
-        BufferedReader br = new BufferedReader(fr);
-        int i=0;
-        String[][] elements = new String [100][100];
-        String ligne;
-        while((ligne = br.readLine())!=null){
-            String[] elements2= ligne.split(";");
-            for(int j=0;j<elements2.length;j++)
-            {
-                elements[i][j]=elements2[j];
-            }
-            i++;
-        }
-        double value = Double.parseDouble(elements[r][5]);
-        return value;
-    }
+//    public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
+//        FileReader fr = new FileReader("CatalogueRevetements.txt");
+//        BufferedReader br = new BufferedReader(fr);
+//        int i=0;
+//        String[][] elements = new String [100][100];
+//        String ligne;
+//        while((ligne = br.readLine())!=null){
+//            String[] elements2= ligne.split(";");
+//            for(int j=0;j<elements2.length;j++)
+//            {
+//                elements[i][j]=elements2[j];
+//            }
+//            i++;
+//        }
+//        double value = Double.parseDouble(elements[r][5]);
+//        return value;
+//    }
     
     double MontantRevetement() throws FileNotFoundException, IOException{
         double montantrevetement = 0;
         int h =0;                               //Pas fait de la manière la plus efficace mais fonctionne
-        while(h<this.RP.size()){
-            montantrevetement = montantrevetement + this.surface*(Plafond.this.lecturepixrevetement(this.RP.get(h)));
+        while(h<this.SaisieIdRP.size()){
+            montantrevetement = montantrevetement + this.surface*(this.SaisieR.get(h).prixUnitaire);
             h = h+1 ;
         }
         return montantrevetement ;
