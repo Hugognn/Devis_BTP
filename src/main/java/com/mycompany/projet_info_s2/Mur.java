@@ -20,7 +20,7 @@ import java.lang.Double;
 public class Mur {
     int idMur;
     Coin debut, fin;
-    Niveau niveau ;
+    double hsp ;
     ArrayList<Integer> SaisieIdR = new ArrayList<Integer>();    //identifiant du revetement
     ArrayList<Double> SaisieHR = new ArrayList<Double>();       //hauteur du revetement
     double longueur;
@@ -29,12 +29,13 @@ public class Mur {
     
     ArrayList<Revetement> SaisieR = new ArrayList<Revetement>();        //liste de revetements avec le type revetement
     
-    Mur(int id, Coin dc, Coin fc) throws FileNotFoundException, IOException{              //les portes et fenetres sont enlevé parce qu'on va devoir les faire avec la classe ouverture et ses sous classes
+    Mur(int id, Coin dc, Coin fc, double hauteur) throws FileNotFoundException, IOException{              //les portes et fenetres sont enlevé parce qu'on va devoir les faire avec la classe ouverture et ses sous classes
+        this.hsp = hauteur;
         this.idMur=id;
         this.debut=dc;
         this.fin=fc;
         this.longueur=(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
-        this.surface=(this.longueur*this.niveau.hsp);
+        this.surface=(this.longueur*this.hsp);
         this.SaisieRevetementsMur();            //permet de remplir les arraylist SaisieIdR et SaisieHR
         this.prix = this.MontantRevetement();
     }
@@ -45,47 +46,16 @@ public class Mur {
         this.fin.afficher();    
     }
     
-//    double longueur()
-//    {
-//        return(Math.sqrt((this.fin.cx-this.debut.cx)*(this.fin.cx-this.debut.cx) + (this.fin.cy-this.debut.cy)*(this.fin.cy-this.debut.cy)));
-//    }
-    
-//    double surface()
-//    {
-//        return(this.longueur*this.niveau.hsp);
-//    }
-//    @Override
-//    public String toString() {
-//        return "Mur{" + "idMur=" + idMur + ", debut=" + debut + ", fin=" + fin + ", idNiveau=" + this.niveau.idNiveau + ", nombre de Fenetres=" + this.nbreFenetres + ", nombre de Portes=" + this.nbrePortes + "}";
-//    }
-    
     public void SaisieRevetementsMur() throws FileNotFoundException, IOException{
         
         this.SaisieIdR.clear();
         this.SaisieHR.clear();
         double hauteurtotaler=0;
         
-//        FileReader fr = new FileReader("CatalogueRevetements.txt");               inutile
-//        BufferedReader br = new BufferedReader(fr);
-//        int i = 0;
-//        String[][] elements = new String[100][100];
-//        String ligne ;
-//        while((ligne = br.readLine())!=null){
-//            String[] elements2= ligne.split(";");
-//            for(int j=0;j<elements2.length;j++)
-//            {
-//                elements[i][j]=elements2[j];
-//            }
-//            i++;
-//        }
-//        
-//        double value;
-        
-        
             int p = 0 ;
             this.SaisieR.clear();
             System.out.println("Nous allons donner la liste des revetements du mur de bas en haut.");
-            while (hauteurtotaler<this.niveau.hsp){
+            while (hauteurtotaler<this.hsp){
                 System.out.println("Identifiant revetement, jusqu'à quelle hauteure");
                 int r = Lire.i();
                 Revetement r1 =new Revetement(r);
@@ -97,7 +67,7 @@ public class Mur {
                 }
                 
                 double hr = Lire.d();
-                while (hr>this.niveau.hsp){
+                while (hr>this.hsp){
                     System.out.println("L'hauteur demandé est plus haute que la taille de la pièce, veuillez choisir une nouvelle hauteur :");
                     hr = Lire.d();
                 }
@@ -110,23 +80,6 @@ public class Mur {
             
     }
     
-//    public double lecturepixrevetement(int r) throws FileNotFoundException, IOException{      // int r correspond à l'identifiant du revetement
-//        FileReader fr = new FileReader("CatalogueRevetements.txt");
-//        BufferedReader br = new BufferedReader(fr);
-//        int i=0;
-//        String[][] elements = new String [100][100];
-//        String ligne;
-//        while((ligne = br.readLine())!=null){
-//            String[] elements2= ligne.split(";");
-//            for(int j=0;j<elements2.length;j++)
-//            {
-//                elements[i][j]=elements2[j];
-//            }
-//            i++;
-//        }
-//        double value = Double.parseDouble(elements[r][5]);
-//        return value;
-//    }
     
     double MontantRevetement() throws FileNotFoundException, IOException{       //Pour le mur en particulier
         double montantrevetement = 0;

@@ -13,20 +13,37 @@ import java.util.ArrayList;
  */
 public class Piece {
     
+    double hsp;
     int idPiece;
+    Coin[]C = new Coin[4];
     Sol sol;
-    Plafond plafond;
-    Niveau niveau;                              //
+    Plafond plafond;                           
     ArrayList<Mur> listeMurs = new ArrayList<Mur>();        //La pièce peut contenir moins de 4 murs, si c'est une terasse par exemple
     double prix;
     
-    Piece(int id,Sol sol, Plafond plafond) throws IOException{
+    Piece(int id,Coin[] C, double hauteur) throws IOException{
+        //C = this.Definitioncoins();
+        this.hsp = hauteur;
         this.idPiece = id;
-        this.sol = sol;
-        this.plafond = plafond;
+        this.sol = new Sol(this.idPiece,C);
+        this.plafond = new Plafond(this.idPiece,C);
         this.listeMurs = definitionMurs();
         this.prix = montantRevetement();
     }
+    
+//    Coin[] Definitioncoins(){
+//        Coin[] DC = new Coin[4];
+//            for (int i=0;i<4;i++){
+//               System.out.println(" Identifiant du Coin");
+//                int id=Lire.i();
+//                System.out.println(" Abscisse du Coin");
+//                double x=Lire.d();
+//                System.out.println(" Ordonnée du Coin");
+//                double y=Lire.d();
+//                DC[i] = new Coin(id,x,y); 
+//            }
+//            return DC;
+//    }
     
     public ArrayList<Mur> definitionMurs() throws IOException{
         ArrayList<Mur> liste = new ArrayList<Mur>();
@@ -53,27 +70,8 @@ public class Piece {
             y=Lire.d();
             Coin c2=new Coin(id,x,y);
             
-            Mur m = new Mur(i,c1,c2);
+            Mur m = new Mur(i,c1,c2, this.hsp);
                 liste.add(i,m);
-            
-//            switch(i){
-//                case 0:
-//                    Mur m1 = new Mur(1,c1,c2,niveau,nbrfenetres,nbrportes);
-//                    this.listeMurs.add(i,m1);
-//                    break;
-//                case 1:
-//                    Mur m2 = new Mur(2,c1,c2,niveau,nbrfenetres,nbrportes);
-//                    this.listeMurs.add(i,m2);
-//                    break;
-//                case 2:
-//                    Mur m3 = new Mur(3,c1,c2,niveau,nbrfenetres,nbrportes);
-//                    this.listeMurs.add(i,m3);
-//                    break;
-//                case 3:
-//                    Mur m4 = new Mur(4,c1,c2,niveau,nbrfenetres,nbrportes);
-//                    this.listeMurs.add(i,m4);
-//                    break;
-//            }
         }
         return liste;
     }

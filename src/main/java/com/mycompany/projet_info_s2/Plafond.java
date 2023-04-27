@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Plafond {
     
-    Coin [] CP = new Coin[4];               // Considérer une pièce rectangulaire    
+//    Coin [] CP = new Coin[4];               // Considérer une pièce rectangulaire    
     ArrayList<Integer> SaisieIdRP = new ArrayList<Integer>();
     ArrayList<Revetement> SaisieR = new ArrayList<Revetement>();
     int idPlafond;

@@ -5,24 +5,17 @@
 package com.mycompany.projet_info_s2;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  *
- * @author killi
+ * @author Stéphane
  */
-
-class Immeuble extends Batiment{
-   
+public class Maison extends Batiment {
+    
+    int idMaison;
     String nom;
-    int idImmeuble;
-    int nbrNiveaux;
     
-    Immeuble(int id,String name, int nbr) throws IOException{
-        super(name, nbr);
-        this.idImmeuble = id;
+    Maison(int id,String name) throws IOException{
+        super(name,1);
     }
-    
-    
-    
 }

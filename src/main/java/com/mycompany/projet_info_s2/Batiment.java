@@ -16,45 +16,38 @@ public class Batiment {
     
     //Attribut
     String idBatiment;
-    ArrayList<Niveau> listeNiveaux = new ArrayList<Niveau>();
+    ArrayList<Niveau> listeNiveau = new ArrayList<Niveau>();
     double prix;
-    //double surfaceRevetement;
     
     //Constructeur 
-    
-    Batiment(String id) throws IOException{
+   
+    Batiment(String id, int nbrN) throws IOException{
         this.idBatiment = id;
-        this.listeNiveaux = definitionNiveaux();
-        this.prix = montantRevetement();
-        //this.surfaceRevetement = surfaceR();
+        this.listeNiveau = definitionNiveaux(nbrN);
+        this.prix = DevisBatiment(nbrN);
     }
     
-    public ArrayList<Niveau> definitionNiveaux() throws IOException{
+    public ArrayList<Niveau> definitionNiveaux(int nb) throws IOException{
         ArrayList<Niveau> liste = new ArrayList<Niveau>();
-        System.out.println("Combien voulez-vous de niveaux ?");
-        int nbrNiveaux = Lire.i();
-        while (nbrNiveaux<1){
-            System.out.println("Ceci ne définit pas un Batiment, veuillez saisir un autre nombre de niveaux :");
-            nbrNiveaux = Lire.i();
-        }
         double h;
-        for (int i=0; i<liste.size();i++){
-            System.out.println("Quelle est l'hauteure sous plafond du niveau "+ i+1 +" ? (En m)");
+        for (int i=0; i<nb;i++){
+            int affichageniveau = i+1;
+            System.out.println("Quelle est l'hauteure sous plafond du niveau "+ affichageniveau +" ? (En m)");
             h = Lire.d();
             while (h<1){
                 System.out.println("Cette hauteur est trop petite pour un niveau, veuillez saisir une nouvelle hauteur :");
                 h = Lire.d();
             }
-            Niveau N = new Niveau (i,h);
-            liste.add(i,N);  
+            liste.add(i,new Niveau(i,h));
+            System.out.println("Nous avons bien enregistré le niveau.");
         }
         return liste;
     }
     
-    double montantRevetement(){
+    double DevisBatiment(int nbrN){
         double montant = 0;
-        for (int i=0;i<this.listeNiveaux.size();i++){
-            montant = montant + this.listeNiveaux.get(i).prix;
+        for (int i=0;i<nbrN;i++){
+            montant = montant + this.listeNiveau.get(i).prix;
         }
         return montant;
     }

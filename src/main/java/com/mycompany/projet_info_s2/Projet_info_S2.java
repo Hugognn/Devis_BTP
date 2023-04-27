@@ -92,5 +92,16 @@ public class Projet_info_S2{
 ////         
 ////        // Définir les revetements et l'hauteur du revetement en question
 ////         System.out.println(m1.prix);
+        System.out.println("Comment voulez-vous appeller le batiment ?");
+        String nom = Lire.S();
+        System.out.println("Combien de niveaux voulez-vous ?");
+        int nbrN = Lire.i();
+        if(nbrN ==1){
+            Maison M = new Maison(1,nom);
+            System.out.println(M.prix);
+        }else{
+            Immeuble I = new Immeuble (1, nom,nbrN);
+            System.out.println(I.prix);
+        }
     } 
 }

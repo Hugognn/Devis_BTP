@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Sol {
     //Attributs
-    Coin [] CS = new Coin[4];                   //Considérer une pièce rectangulaire
+//    Coin [] CS = new Coin[4];                   //Considérer une pièce rectangulaire
     ArrayList<Integer> SaisieIdRS = new ArrayList<Integer>();
     ArrayList<Revetement> SaisieR = new ArrayList<Revetement>();
     int idSol;

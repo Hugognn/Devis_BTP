@@ -13,12 +13,13 @@ import java.util.ArrayList;
  */
 public class Appartement {
     
+    double hsp;
     int idAppartement;
     ArrayList<Piece> listePieces = new ArrayList<Piece>();
-    Niveau niveau;
     double prix;
     
-    Appartement(int id) throws IOException{
+    Appartement(int id, double hauteur) throws IOException{
+        this.hsp = hauteur;
         this.idAppartement = id;
         this.listePieces = definitionPieces();
         this.prix = montantRevetement();
@@ -49,10 +50,11 @@ public class Appartement {
                 Coin c = new Coin (id,cx,cy);
                 C[j] = c;
             }
-            Sol sol = new Sol(i,C);
-            Plafond plafond = new Plafond(i,C);
-            Piece p = new Piece(i,sol,plafond);
+            Piece p = new Piece(i,C, this.hsp);
+//            Sol sol = new Sol(i,C);
+//            Plafond plafond = new Plafond(i,C);
             liste.add(i,p);
+            System.out.println("Nous avons bien enregistré la pièce.");
         }
         return liste;
         }

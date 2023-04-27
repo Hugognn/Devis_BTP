@@ -36,8 +36,9 @@ public class Niveau {
             nbrniveaux = Lire.i();
         }
         for (int i=0;i<nbrniveaux;i++){
-            Appartement A = new Appartement (i);
+            Appartement A = new Appartement (i,this.hsp);
             liste.add(i,A);
+            System.out.println("Nous avons bien enregistré l'appartement.");
         }
         return liste;
     }
