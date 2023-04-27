@@ -9,17 +9,17 @@ package com.mycompany.projet_info_s2;
  * @author killi
  */
 
-public class Immeuble extends Batiment{
-    //attributs
-    public static int idImmeuble;
-    
-    //constructeur
-    public Immeuble() {
-        this.idImmeuble = 1;
-    }
-    
-    //methode "afficher"
-    public static void afficher(){
-        System.out.println("idImmeuble = "+idImmeuble);
-    }
-}
+//public class Immeuble extends Batiment{
+//    //attributs
+////    public static int idImmeuble;
+////    
+////    //constructeur
+////    public Immeuble() {
+////        this.idImmeuble = 1;
+////    }
+////    
+////    //methode "afficher"
+////    public static void afficher(){
+////        System.out.println("idImmeuble = "+idImmeuble);
+////    }
+//}

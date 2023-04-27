@@ -18,7 +18,7 @@ public class Batiment {
     String idBatiment;
     ArrayList<Niveau> listeNiveaux = new ArrayList<Niveau>();
     double prix;
-    double surfaceRevetement;
+    //double surfaceRevetement;
     
     //Constructeur 
     
@@ -26,7 +26,7 @@ public class Batiment {
         this.idBatiment = id;
         this.listeNiveaux = definitionNiveaux();
         this.prix = montantRevetement();
-        this.surfaceRevetement = surfaceR();
+        //this.surfaceRevetement = surfaceR();
     }
     
     public ArrayList<Niveau> definitionNiveaux() throws IOException{
@@ -57,13 +57,5 @@ public class Batiment {
             montant = montant + this.listeNiveaux.get(i).prix;
         }
         return montant;
-    }
-    
-    double surfaceR(){
-        double surface = 0;
-        for (int i =0;i<this.listeNiveaux.size();i++){
-            for (int j =0; j<)
-        }
-        return surface;
     }
 }
