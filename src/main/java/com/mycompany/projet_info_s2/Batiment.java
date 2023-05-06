@@ -5,7 +5,6 @@
 package com.mycompany.projet_info_s2;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  *
@@ -15,40 +14,34 @@ public class Batiment {
    
     
     //Attribut
-    String idBatiment;
-    ArrayList<Niveau> listeNiveau = new ArrayList<Niveau>();
+    private int idBatiment;
+    private int nbNiveaux;
     double prix;
     
     //Constructeur 
    
-    Batiment(String id, int nbrN) throws IOException{
+    Batiment(int id, int nbniveaux) throws IOException{
         this.idBatiment = id;
-        this.listeNiveau = definitionNiveaux(nbrN);
-        this.prix = DevisBatiment(nbrN);
+        this.nbNiveaux = nbniveaux;
+        //this.prix = DevisBatiment(nbrN);
     }
     
-    public ArrayList<Niveau> definitionNiveaux(int nb) throws IOException{
-        ArrayList<Niveau> liste = new ArrayList<Niveau>();
-        double h;
-        for (int i=0; i<nb;i++){
-            int affichageniveau = i+1;
-            System.out.println("Quelle est l'hauteure sous plafond du niveau "+ affichageniveau +" ? (En m)");
-            h = Lire.d();
-            while (h<1){
-                System.out.println("Cette hauteur est trop petite pour un niveau, veuillez saisir une nouvelle hauteur :");
-                h = Lire.d();
-            }
-            liste.add(i,new Niveau(i,h));
-            System.out.println("Nous avons bien enregistré le niveau.");
-        }
-        return liste;
+    public int getIdBatiment() {
+    return idBatiment;
     }
+
+    public int getNbNiveaux() {
+        return nbNiveaux;
+    }
+
+
+
     
-    double DevisBatiment(int nbrN){
-        double montant = 0;
-        for (int i=0;i<nbrN;i++){
-            montant = montant + this.listeNiveau.get(i).prix;
-        }
-        return montant;
-    }
+//    double DevisBatiment(int nbrN){
+//        double montant = 0;
+//        for (int i=0;i<nbrN;i++){
+//            montant = montant + this.listeNiveau.get(i).prix;
+//        }
+//        return montant;
+//    }
 }

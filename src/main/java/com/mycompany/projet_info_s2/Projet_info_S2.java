@@ -1,15 +1,23 @@
 package com.mycompany.projet_info_s2;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.lang.Double;
 
 public class Projet_info_S2{
     
     public static void main (String[]args) throws IOException{
+        Save s= new Save();
+        Coin c1= new Coin(1,0,0);
+        Coin c2= new Coin(2,0,1);
+        Coin c3= new Coin(3,1,1);
+        Coin c4= new Coin(4,1,0);
+        Mur m1 = new Mur(1,c1,c2);
+        Mur m2 = new Mur(2,c2,c3);
+        Mur m3 = new Mur(3,c3,c4);
+        Mur m4 = new Mur(4,c4,c1);
+        Piece p1 = new Piece(1,m1,m2,m3,m4);
+        Appartement a1 = new Appartement(1,p1);
+        Batiment b1 = new Batiment(1,3);
+        Save.sauvegarder(Coin.getCoinList(), Mur.getMurList(),Piece.getPieceList(),Appartement.getListeAppartements(),Niveau.getNiveauxList(),b1 ,"6");
 //      //Création du niveau
 //        System.out.println("Identifiant niveau");
 //        int idn = Lire.i();
@@ -92,16 +100,16 @@ public class Projet_info_S2{
 ////         
 ////        // Définir les revetements et l'hauteur du revetement en question
 ////         System.out.println(m1.prix);
-        System.out.println("Comment voulez-vous appeller le batiment ?");
-        String nom = Lire.S();
-        System.out.println("Combien de niveaux voulez-vous ?");
-        int nbrN = Lire.i();
-        if(nbrN ==1){
-            Maison M = new Maison(1,nom);
-            System.out.println(M.prix);
-        }else{
-            Immeuble I = new Immeuble (1, nom,nbrN);
-            System.out.println(I.prix);
-        }
-    } 
+//        System.out.println("Comment voulez-vous appeller le batiment ?");
+//        String nom = Lire.S();
+//        System.out.println("Combien de niveaux voulez-vous ?");
+//        int nbrN = Lire.i();
+//        if(nbrN ==1){
+//            Maison M = new Maison(1,nom);
+//            System.out.println(M.prix);
+//        }else{
+//            Immeuble I = new Immeuble (1, nom,nbrN);
+//            System.out.println(I.prix);
+//        }
+   } 
 }

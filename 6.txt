@@ -1,0 +1,17 @@
+Type ; identifiant coin ; Coordonnée X; Coordonnée Y
+Coin;1;0.0;0.0
+Coin;2;0.0;1.0
+Coin;3;1.0;1.0
+Coin;4;1.0;0.0
+Type ; identifiant mur ; Coin de départ; Coin de fin ; identifiant de revetement
+Mur;1;Coin{idCoin=1, cx=0.0, cy=0.0};Coin{idCoin=2, cx=0.0, cy=1.0};1
+Mur;2;Coin{idCoin=2, cx=0.0, cy=1.0};Coin{idCoin=3, cx=1.0, cy=1.0};2
+Mur;3;Coin{idCoin=3, cx=1.0, cy=1.0};Coin{idCoin=4, cx=1.0, cy=0.0};3
+Mur;4;Coin{idCoin=4, cx=1.0, cy=0.0};Coin{idCoin=1, cx=0.0, cy=0.0};4
+Type ; identifiant piece ; Identifiant 1er mur; identifiant 2eme mur...
+Piece;1;1;2;3;4;
+Type ; identifiant appartement ; Identifiant 1ere piece; identifiant 2eme piece...
+Appartement;1;1
+Type ; identifiant niveau ;hauteur sous plafond; Identifiant 1er appart; identifiant 2eme appart...
+Type ; identifiant batiment ; Nombre de niveaux
+Batiment;1;3
